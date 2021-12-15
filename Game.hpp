@@ -2,7 +2,7 @@
 #include "Player.hpp"
 #include "TileMap.hpp"
 #pragma once
-//extern bool onGround;
+
 namespace game {
     class Game {
     private:
@@ -12,11 +12,8 @@ namespace game {
         sf::Event ev;
         player::Player *player;
 
-        //TileMap map;
-
         void initWindow();
 
-        //void initMap();
         void initPlayer();
 
         void initBackground();
@@ -26,7 +23,6 @@ namespace game {
 
         virtual ~Game();
 
-        //функции
         void updateCollision();
 
         void updatePlayer();

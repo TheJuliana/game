@@ -1,6 +1,6 @@
 #pragma once
 enum PLAYER_ANIMATION_STATES {
-    IDLE = 0, MOVING_LEFT, MOVING_RIGHT, JUMPING, FALLING
+    IDLE = 0, MOVING_LEFT, MOVING_RIGHT, JUMPING
 };
 
 namespace player {
@@ -44,16 +44,16 @@ namespace player {
 
         sf::FloatRect getGlobalBounds();
 
-        //modifiers
-        void setPosition(const float x, const float y);
+        //модификации
+        void setPosition(float x, float y);
 
         void resetVelocityY();
 
         //функции
 
-        bool canJump();
+        //bool canJump();
 
-        void move(const float dir_x, const float dir_y);
+        void move(float dir_x, float dir_y);
 
         void updatePhysics();
 

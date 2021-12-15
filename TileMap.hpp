@@ -5,7 +5,7 @@
 namespace tilemap {
     class TileMap {
     private:
-        std::vector<std::vector<Tile *>> tiles;
+        std::vector<std::vector<tile::Tile*>> tiles;
     public:
         TileMap();
 

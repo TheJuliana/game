@@ -1,6 +1,5 @@
 #include "stdfx.hpp"
 #include "Player.hpp"
-#include "Game.hpp"
 
 namespace player {
     Player::Player() {
@@ -11,9 +10,7 @@ namespace player {
         initPhysics();
     }
 
-    Player::~Player() {
-
-    }
+    Player::~Player() {}
 
     void Player::update() {
         updateMovement();
@@ -47,8 +44,8 @@ namespace player {
             move(1.f, 0.f); //движение направо
             animState = MOVING_RIGHT;
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-            if (canJump()) {
-                    move(0, -5.f);
+            if (onFloor) {
+                    move(0, -1.f);
                     onFloor = false;
             }
             animState = JUMPING;
@@ -136,15 +133,14 @@ namespace player {
 
     }
 
-
-
     void Player::updatePhysics() {
-        if(!onFloor) //гравитация
-            velocity.y += /*1.f **/ gravity;
+        if(!onFloor) {
+            velocity.y += gravity;
+        }//гравитация
 
-        //deceleration
+        //торможение
         velocity *= drag;
-        //limit deceleration
+        //ограничение торможения
         if (std::abs(velocity.x) < velocityMin) {
             velocity.x = 0.f;
         }
@@ -156,7 +152,6 @@ namespace player {
     }
 
     void Player::move(const float dir_x, const float dir_y) {
-        //acceleration
         velocity.x += dir_x;
         velocity.y += dir_y;
 
@@ -178,9 +173,6 @@ namespace player {
         return sprite.getPosition();
     }
 
-    bool Player::canJump() {
-        return onFloor;
-    }
 
 }
 

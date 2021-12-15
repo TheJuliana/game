@@ -1,22 +1,18 @@
 #include "stdfx.hpp"
 #include "Game.hpp"
-#include "Player.hpp"
 
 namespace game {
     void Game::initWindow() {
         window.create(
                 sf::VideoMode(1200, 800), //создание окна
-                "Game", //название окна
-                sf::Style::Close | sf::Style::Titlebar
+                "Game"
         );// окно будет иметь кнопку закрытия и название
         window.setFramerateLimit(60);
-        // this->window.setFramerateLimit(144);
     }
 
     Game::Game() {
         initWindow(); //вызов окна
         initBackground();
-        //initMap();
         initPlayer();
 
     }
@@ -38,16 +34,15 @@ namespace game {
                 window.close(); //окно закрывается при нажатии на esc
             }
 
-            /*if(this->ev.type == sf::Event::KeyPressed && (this->ev.key.code == sf::Keyboard::Escape ||
-                    this->ev.key.code == sf::Keyboard::A ||
-                    this->ev.key.code == sf::Keyboard::D ||
-                    this->ev.key.code == sf::Keyboard::W ||
-                    this->ev.key.code == sf::Keyboard::S)) {
-               this->player->resetAnimationTimer();
+            /*if(ev.type == sf::Event::KeyPressed && (ev.key.code == sf::Keyboard::Escape ||
+                    ev.key.code == sf::Keyboard::A ||
+                    ev.key.code == sf::Keyboard::D ||
+                    ev.key.code == sf::Keyboard::W ||
+                    ev.key.code == sf::Keyboard::S)) {
+               player->resetAnimationTimer();
             }*/
         }
 
-        //for (int i =0; i < gridLength)
 
         updatePlayer();
         updateCollision();
@@ -57,9 +52,7 @@ namespace game {
         window.clear();
         //рендер игры
         window.draw(background);
-        //map.Draw(window);
         renderPlayer();
-
         window.display();
     }
 
@@ -76,13 +69,11 @@ namespace game {
     }
 
     void Game::updateCollision() {
-        //collision bottom of screen
+        //столкновение с нижней частью экрана
         if (player->getPosition().y + player->getGlobalBounds().height > window.getSize().y) {
-
             player->resetVelocityY();
             player->setPosition(player->getPosition().x,window.getSize().y - player->getGlobalBounds().height);
             player->onFloor = true;
-            //onGround = true;
         } else {player->onFloor = false;};
     }
 
@@ -94,9 +85,5 @@ namespace game {
         }
     }
 }
-/*void Game::initMap() {
-    if(!this->map.LoadFromFile("map.xml")) {
-        std::cout << "ERROR::Player: cannot load 'map.xml' file " << std::endl;
-    }
-}*/
+
 
