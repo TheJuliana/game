@@ -25,7 +25,7 @@ namespace apples {
         sprite.setPosition(m_x, m_y);
         sprite.setColor(sf::Color::Red);
         sprite.setTexture(texture);
-        sprite.setScale(0.1f, 0.1f);
+        sprite.setScale(0.08f, 0.08f);
     }
 
     void Apples::initTexture() {
@@ -35,7 +35,7 @@ namespace apples {
     }
 
     void Apples::initPhysics() {
-        gravity = 0.2f;
+        gravity = 0.05f;
     }
 
     void Apples::setPosition(float x, float y) {
@@ -55,6 +55,10 @@ namespace apples {
 
     void Apples::render(sf::RenderTarget &target) {
         target.draw(sprite);
+    }
+
+    void Apples::setVelocity(float velocity) {
+        m_velocity = velocity;
     }
 
 }

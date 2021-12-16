@@ -81,6 +81,7 @@ namespace game {
             if (apple->getPosition().y + apple->getGlobalBounds().height > window.getSize().y) {
                 apple->resetVelocityY();
                 apple->setPosition(apple->getPosition().x, 0.f);
+                apple->setVelocity(rand() % 5 + 1);
                 apple->onFloor = true;
             } else {apple->onFloor = false;};
         }
@@ -97,7 +98,7 @@ namespace game {
     void Game::initApples() {
         numbOfApples = 5;
         for (int i = 0; i < window.getSize().x; i+= window.getSize().x / numbOfApples) {
-            apples.push_back(new apples::Apples((float)i, 0.f, rand() % (3)+1));
+            apples.push_back(new apples::Apples((float)i, 0.f, rand() % 5 + 1));
         }
     }
 

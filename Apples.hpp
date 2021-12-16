@@ -21,6 +21,7 @@ namespace apples {
         void initPhysics();
         void initTexture();
         void setPosition(float x, float y);
+        void setVelocity(float velocity);
         void resetVelocityY();
         void update();
         void render(sf::RenderTarget &target);
