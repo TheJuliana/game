@@ -16,7 +16,8 @@ add_executable(
         Game.hpp
         Player.cpp
         Player.hpp
-        
+        Apples.cpp
+        Apples.hpp
 )
 
 add_definitions(-DSFML_STATIC)

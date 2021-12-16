@@ -38,7 +38,7 @@ namespace player {
     public:
         Player();
 
-        virtual ~Player();
+        ~Player();
 
         sf::Vector2f getPosition();
 

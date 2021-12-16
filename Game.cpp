@@ -11,10 +11,15 @@ namespace game {
         initWindow(); //вызов окна
         initBackground();
         initPlayer();
+        initApples();
     }
 
     Game::~Game() {
         delete player; //удаляет игрока
+        for (const auto& apple : apples) {
+            delete apple;
+        };
+        apples.clear();
     }
 
     const sf::RenderWindow &Game::getWindow() {
@@ -32,6 +37,7 @@ namespace game {
 
         }
         updatePlayer();
+        updateApples();
         updateCollision();
     }
 
@@ -39,6 +45,7 @@ namespace game {
         window.clear();
         //рендер игры
         window.draw(background);
+        renderApples();
         renderPlayer();
 
         window.display();
@@ -64,13 +71,19 @@ namespace game {
             player->onFloor = true;
         } else {player->onFloor = false;};
         if (player->getPosition().x + player->getGlobalBounds().width > window.getSize().x) {
-            //player->resetVelocityY();
             player->setPosition(0, player->getPosition().y);
         };
         if (player->getPosition().x + player->getGlobalBounds().width < 0) {
-            //player->resetVelocityY();
             player->setPosition(window.getSize().x- player->getGlobalBounds().width, player->getPosition().y);
         };
+
+        for (const auto& apple : apples) {
+            if (apple->getPosition().y + apple->getGlobalBounds().height > window.getSize().y) {
+                apple->resetVelocityY();
+                apple->setPosition(apple->getPosition().x, 0.f);
+                apple->onFloor = true;
+            } else {apple->onFloor = false;};
+        }
     }
 
     void Game::initBackground() {
@@ -80,6 +93,25 @@ namespace game {
             background.setTexture(background_image);
         }
     }
+
+    void Game::initApples() {
+        numbOfApples = 5;
+        for (int i = 0; i < window.getSize().x; i+= window.getSize().x / numbOfApples) {
+            apples.push_back(new apples::Apples((float)i, 0.f, rand() % (3)+1));
+        }
+    }
+
+    void Game::updateApples() {
+        for (const auto& apple : apples) {
+            apple->update();
+        }
+    }
+
+    void Game::renderApples() {
+        for (const auto& apple : apples) {
+            apple->render(window);
+        }
+    };
 
 }
 

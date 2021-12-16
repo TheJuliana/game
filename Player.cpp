@@ -190,7 +190,7 @@ namespace player {
         velocity.y = 0.f;
     }
 
-    void Player::setPosition(const float x, const float y) {
+    void Player::setPosition(float x, float y) {
         sprite.setPosition(x, y);
     }
 

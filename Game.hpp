@@ -1,5 +1,7 @@
 #include "inputs.hpp"
 #include "Player.hpp"
+#include "Apples.hpp"
+
 #pragma once
 
 namespace game {
@@ -11,11 +13,16 @@ namespace game {
         sf::Event ev;
         player::Player *player;
 
+        std::vector<apples::Apples*> apples;
+        int numbOfApples;
+
         void initWindow();
 
         void initPlayer();
 
         void initBackground();
+
+        void initApples();
 
     public:
         Game();
@@ -27,6 +34,10 @@ namespace game {
         void updatePlayer();
 
         void renderPlayer();
+
+        void updateApples();
+
+        void renderApples();
 
         void update();
 
