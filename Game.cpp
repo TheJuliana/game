@@ -11,7 +11,6 @@ namespace game {
         initWindow(); //вызов окна
         initBackground();
         initPlayer();
-
     }
 
     Game::~Game() {
@@ -31,13 +30,6 @@ namespace game {
                 window.close(); //окно закрывается при нажатии на esc
             }
 
-            /*if(ev.type == sf::Event::KeyPressed && (ev.key.code == sf::Keyboard::Escape ||
-                    ev.key.code == sf::Keyboard::A ||
-                    ev.key.code == sf::Keyboard::D ||
-                    ev.key.code == sf::Keyboard::W ||
-                    ev.key.code == sf::Keyboard::S)) {
-               player->resetAnimationTimer();
-            }*/
         }
 
 
@@ -50,6 +42,7 @@ namespace game {
         //рендер игры
         window.draw(background);
         renderPlayer();
+
         window.display();
     }
 
@@ -83,12 +76,13 @@ namespace game {
     }
 
     void Game::initBackground() {
-        if (!background_image.loadFromFile("../textures/background.png")) {
+        if (!background_image.loadFromFile("../assets/background.png")) {
             std::cout << "ERROR::Player: cannot load 'background.png' file " << std::endl;
         } else {
             background.setTexture(background_image);
         }
     }
+
 }
 
 
