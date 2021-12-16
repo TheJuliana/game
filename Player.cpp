@@ -1,4 +1,4 @@
-#include "stdfx.hpp"
+#include "inputs.hpp"
 #include "Player.hpp"
 
 namespace player {
@@ -32,7 +32,7 @@ namespace player {
         sprite.setTexture(textureSheet); //устанавливаем полную текстуру персонажа
         currentFrame = sf::IntRect(0, 0, 219, 219);
         sprite.setTextureRect(currentFrame); //устанавливаем только кусок текстуры
-        sprite.setScale(0.5f, 0.5f); //подгонка персонажа под адекватный размер
+        sprite.setScale(0.8f, 0.8f); //подгонка персонажа под адекватный размер
     }
 
     void Player::updateMovement() {
@@ -74,10 +74,10 @@ namespace player {
                 }
                 animationTimer.restart();
                 sprite.setTextureRect(currentFrame); //установка конкретного куска текстуры движения
-                sprite.setScale(0.5f, 0.5f);
+                sprite.setScale(0.8f, 0.8f);
                 sprite.setOrigin(0.f, 0.f);
             }
-            sprite.setScale(0.5f, 0.5f);
+            sprite.setScale(0.8f, 0.8f);
             sprite.setOrigin(0.f, 0.f);
 
         } else if (animState == MOVING_LEFT) {
@@ -91,7 +91,7 @@ namespace player {
                 animationTimer.restart();
                 sprite.setTextureRect(currentFrame); //установка конкретного куска текстуры движения
             }
-            sprite.setScale(-0.5f, 0.5f);
+            sprite.setScale(-0.8f, 0.8f);
             sprite.setOrigin(sprite.getGlobalBounds().width / 0.5f, 0.f);
         } else if (animState == JUMPING) {
             if (animationTimer.getElapsedTime().asMilliseconds() >=
@@ -104,7 +104,7 @@ namespace player {
                 animationTimer.restart();
                 sprite.setTextureRect(currentFrame); //установка конкретного куска текстуры движения
             }
-            sprite.setScale(-0.5f, 0.5f);
+            sprite.setScale(-0.8f, 0.8f);
             sprite.setOrigin(this->sprite.getGlobalBounds().width / 0.5f, 0.f);
 
 

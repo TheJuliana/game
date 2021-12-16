@@ -10,7 +10,7 @@ link_directories("c:/SFML/lib/")
 
 add_executable(
         game main.cpp
-        stdfx.hpp
+        inputs.hpp
         Game.cpp
         Game.hpp
         Player.cpp

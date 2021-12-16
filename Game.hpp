@@ -1,4 +1,4 @@
-#include "stdfx.hpp"
+#include "inputs.hpp"
 #include "Player.hpp"
 #include "TileMap.hpp"
 #pragma once

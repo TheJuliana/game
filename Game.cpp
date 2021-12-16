@@ -1,12 +1,9 @@
-#include "stdfx.hpp"
+#include "inputs.hpp"
 #include "Game.hpp"
 
 namespace game {
     void Game::initWindow() {
-        window.create(
-                sf::VideoMode(1200, 800), //создание окна
-                "Game"
-        );// окно будет иметь кнопку закрытия и название
+        window.create(sf::VideoMode(1200, 800),"Just The Peppa Pig");
         window.setFramerateLimit(60);
     }
 
@@ -75,6 +72,14 @@ namespace game {
             player->setPosition(player->getPosition().x,window.getSize().y - player->getGlobalBounds().height);
             player->onFloor = true;
         } else {player->onFloor = false;};
+        if (player->getPosition().x + player->getGlobalBounds().width > window.getSize().x) {
+            //player->resetVelocityY();
+            player->setPosition(0, player->getPosition().y);
+        };
+        if (player->getPosition().x + player->getGlobalBounds().width < 0) {
+            //player->resetVelocityY();
+            player->setPosition(window.getSize().x- player->getGlobalBounds().width, player->getPosition().y);
+        };
     }
 
     void Game::initBackground() {

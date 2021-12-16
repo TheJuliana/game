@@ -1,8 +1,8 @@
-#include "stdfx.hpp"
+#include "inputs.hpp"
 #include "Game.hpp"
 
 int main() {
-    srand(time(0));
+    //srand(time(0));
     game::Game game;
     while(game.getWindow().isOpen()){
         game.update();
