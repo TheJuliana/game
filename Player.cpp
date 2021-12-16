@@ -40,15 +40,29 @@ namespace player {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
             move(-1.f, 0.f); //движение игрока налево
             animState = MOVING_LEFT;
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+                if (onFloor) {
+                    move(-1.f, -50.f);
+                    onFloor = false;
+                }
+                animState = LEFT_JUMPING;
+            }
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
             move(1.f, 0.f); //движение направо
             animState = MOVING_RIGHT;
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+                if (onFloor) {
+                    move(1.f, -50.f);
+                    onFloor = false;
+                }
+                animState = RIGHT_JUMPING;
+            }
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
             if (onFloor) {
-                    move(0, -1.f);
+                    move(0, -50.f);
                     onFloor = false;
             }
-            animState = JUMPING;
+            animState = RIGHT_JUMPING;
         };
     }
 
@@ -93,7 +107,7 @@ namespace player {
             }
             sprite.setScale(-0.8f, 0.8f);
             sprite.setOrigin(sprite.getGlobalBounds().width / 0.5f, 0.f);
-        } else if (animState == JUMPING) {
+        } else if (animState == LEFT_JUMPING) {
             if (animationTimer.getElapsedTime().asMilliseconds() >=
                 100.f) { //задержка анимации//смена анимаций движения персонажа
                 currentFrame.top = 438.f;
@@ -105,9 +119,20 @@ namespace player {
                 sprite.setTextureRect(currentFrame); //установка конкретного куска текстуры движения
             }
             sprite.setScale(-0.8f, 0.8f);
-            sprite.setOrigin(this->sprite.getGlobalBounds().width / 0.5f, 0.f);
-
-
+            sprite.setOrigin(sprite.getGlobalBounds().width / 0.5f, 0.f);
+        } else if (animState == RIGHT_JUMPING) {
+            if (animationTimer.getElapsedTime().asMilliseconds() >=
+                100.f) { //задержка анимации//смена анимаций движения персонажа
+                currentFrame.top = 438.f;
+                currentFrame.left += 219.f;
+                if (currentFrame.left >= 1314.f) {
+                    currentFrame.left = 1095.f;
+                }
+                animationTimer.restart();
+                sprite.setTextureRect(currentFrame); //установка конкретного куска текстуры движения
+            }
+            sprite.setScale(0.8f, 0.8f);
+            sprite.setOrigin(0.f, 0.f);
         } else {
             animationTimer.restart();
         }

@@ -31,8 +31,6 @@ namespace game {
             }
 
         }
-
-
         updatePlayer();
         updateCollision();
     }
