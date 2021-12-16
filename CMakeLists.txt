@@ -15,10 +15,10 @@ add_executable(
         Game.hpp
         Player.cpp
         Player.hpp
-        Tile.cpp
-        Tile.hpp
-        TileMap.cpp
-        TileMap.hpp
+        #Tile.cpp
+        #Tile.hpp
+        #TileMap.cpp
+        #TileMap.hpp
 )
 
 add_definitions(-DSFML_STATIC)
