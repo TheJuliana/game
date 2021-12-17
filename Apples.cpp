@@ -23,7 +23,6 @@ namespace apples {
 
     void Apples::initSprite() {
         sprite.setPosition(m_x, m_y);
-        sprite.setColor(sf::Color::Red);
         sprite.setTexture(texture);
         sprite.setScale(0.08f, 0.08f);
     }

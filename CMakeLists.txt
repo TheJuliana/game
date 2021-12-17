@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.15)
 project(game)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -10,7 +10,7 @@ include_directories("inc/")
 link_directories("c:/SFML/lib/")
 
 add_executable(
-        game main.cpp
+        "${PROJECT_NAME}" main.cpp
         inputs.hpp
         Game.cpp
         Game.hpp
@@ -22,7 +22,7 @@ add_executable(
 
 add_definitions(-DSFML_STATIC)
 
-target_link_libraries(game sfml-graphics-s-d
+target_link_libraries("${PROJECT_NAME}" sfml-graphics-s-d
         sfml-window-s-d
         sfml-system-s-d
         opengl32
@@ -36,3 +36,19 @@ target_link_libraries(game sfml-graphics-s-d
         vorbisfile
         vorbis
         ogg)
+
+target_link_libraries("${PROJECT_NAME}"
+        debug sfml-graphics-s-d
+        debug sfml-window-s-d
+        debug sfml-system-s-d
+        debug sfml-audio-s-d)
+
+target_link_libraries("${PROJECT_NAME}"
+        optimized sfml-graphics-s
+        optimized sfml-window-s
+        optimized sfml-system-s
+        optimized sfml-audio-s)
+
+target_link_libraries("${PROJECT_NAME}" opengl32 freetype winmm gdi32 openal32 flac vorbisenc vorbisfile vorbis ogg)
+
+file(COPY "assets" DESTINATION "/")

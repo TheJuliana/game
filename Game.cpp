@@ -64,6 +64,7 @@ namespace game {
 
     void Game::initPlayer() {
         player = new player::Player();
+        player->setPosition(0.f, window.getSize().y-player->getGlobalBounds().height);
     }
 
     void Game::renderPlayer() {
