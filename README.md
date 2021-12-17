@@ -1,7 +1,7 @@
 ![alt tag](https://www.scholastic.ca/books/series/peppapig/images/header.png "ThePeppaPig")
 # ThePeppaPig: Apples! Game
 
-In this game you, playing as Peppa Pig, must collect as many apples
+In this game you, playing as Peppa Pig, must collect as many apples as you can
 
 ## System requirements
 
