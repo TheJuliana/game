@@ -2,12 +2,11 @@ cmake_minimum_required(VERSION 3.15)
 project(game)
 
 set(CMAKE_CXX_STANDARD 14)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static -static-libstdc++ -static-libgcc")
 
-include_directories("c:/SFML/include/")
+include_directories("ext/SFML/include/")
 include_directories("inc/")
 
-link_directories("c:/SFML/lib/")
+link_directories("ext/SFML/lib/")
 
 add_executable(
         "${PROJECT_NAME}" main.cpp
