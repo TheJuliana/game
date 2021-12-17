@@ -3,19 +3,25 @@
 
 namespace game {
     void Game::initWindow() {
-        window.create(sf::VideoMode(1200, 800),"Just The Peppa Pig");
+        window.create(sf::VideoMode(1200, 800),"ThePeppaPig: Apples!");
         window.setFramerateLimit(60);
+        if(!icon.loadFromFile("../assets/icon.png")) {
+            std::cout << "ERROR: cannot load 'icon.png' file" << std::endl;
+        } else {
+            window.setIcon(351, 325, icon.getPixelsPtr());
+        }
     }
 
     Game::Game() {
-        initWindow(); //вызов окна
+        initWindow(); //инициализация
         initBackground();
         initPlayer();
         initApples();
+        initScore();
     }
 
     Game::~Game() {
-        delete player; //удаляет игрока
+        delete player; //удаление
         for (const auto& apple : apples) {
             delete apple;
         };
@@ -39,6 +45,7 @@ namespace game {
         updatePlayer();
         updateApples();
         updateCollision();
+        updateScore();
     }
 
     void Game::render() {
@@ -47,7 +54,7 @@ namespace game {
         window.draw(background);
         renderApples();
         renderPlayer();
-
+        renderScore();
         window.display();
     }
 
@@ -85,6 +92,19 @@ namespace game {
                 apple->onFloor = true;
             } else {apple->onFloor = false;};
         }
+
+        //собирание яблок
+        for (const auto& apple : apples) {
+            if ((apple->getPosition().y > (player->getPosition().y - apple->getGlobalBounds().height + 1)
+            && apple->getPosition().y < (player->getPosition().y + player->getGlobalBounds().height + apple->getGlobalBounds().height - 1))
+            && (apple->getPosition().x > (player->getPosition().x - apple->getGlobalBounds().width + 1)
+             && apple->getPosition().x < (player->getPosition().x + player->getGlobalBounds().width + apple->getGlobalBounds().width - 1))) {
+                apple->resetVelocityY();
+                apple->setPosition(apple->getPosition().x, 0.f);
+                apple->setVelocity(rand() % 5 + 1);
+                caughtApples++;
+            }
+        }
     }
 
     void Game::initBackground() {
@@ -96,6 +116,8 @@ namespace game {
     }
 
     void Game::initApples() {
+        //появление яблок
+        caughtApples = 0;
         numbOfApples = 5;
         for (int i = 0; i < window.getSize().x; i+= window.getSize().x / numbOfApples) {
             apples.push_back(new apples::Apples((float)i, 0.f, rand() % 5 + 1));
@@ -112,6 +134,28 @@ namespace game {
         for (const auto& apple : apples) {
             apple->render(window);
         }
+    }
+
+    void Game::initScore() {
+        //создание текста с количеством собранных яблок
+        if(!font.loadFromFile("../assets/Fuzzy.ttf")) {
+            std::cout << "ERROR: cannot load 'Fuzzy.ttf' file" << std::endl;
+        }
+        score.setPosition(0.f, 0.f);
+        score.setFont(font);
+        score.setCharacterSize(24);
+        score.setFillColor(sf::Color::Red);
+        score.setStyle(sf::Text::Bold);
+    }
+
+    void Game::renderScore() {
+        window.draw(score);
+    }
+
+    void Game::updateScore() {
+        //обновление количества собранных яблок
+        score.setString(std::string("Apples: x") + std::to_string(caughtApples));
+        score.setPosition(0.f, 0.f);
     };
 
 }

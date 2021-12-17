@@ -47,7 +47,7 @@ namespace apples {
     }
 
     void Apples::update() {
-        if(!onFloor) {
+        if(!onFloor) { //гравитация
             m_velocity += gravity;
         }
         sprite.move(0, m_velocity);

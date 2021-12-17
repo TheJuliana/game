@@ -8,6 +8,7 @@ namespace game {
     class Game {
     private:
         sf::RenderWindow window;
+        sf::Image icon;
         sf::Texture background_image;
         sf::Sprite background;
         sf::Event ev;
@@ -15,6 +16,10 @@ namespace game {
 
         std::vector<apples::Apples*> apples;
         int numbOfApples;
+        int caughtApples;
+
+        sf::Text score;
+        sf::Font font;
 
         void initWindow();
 
@@ -23,6 +28,8 @@ namespace game {
         void initBackground();
 
         void initApples();
+
+        void initScore();
 
     public:
         Game();
@@ -38,6 +45,10 @@ namespace game {
         void updateApples();
 
         void renderApples();
+
+        void updateScore();
+
+        void renderScore();
 
         void update();
 

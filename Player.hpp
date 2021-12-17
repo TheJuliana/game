@@ -24,7 +24,7 @@ namespace player {
         float velocityMaxY;
 
 
-        //основные характеристики
+        //инициализация характеристик
         void initPhysics();
 
         void initVariables();
@@ -44,14 +44,11 @@ namespace player {
 
         sf::FloatRect getGlobalBounds();
 
-        //модификации
         void setPosition(float x, float y);
 
         void resetVelocityY();
 
         //функции
-
-        //bool canJump();
 
         void move(float dir_x, float dir_y);
 
