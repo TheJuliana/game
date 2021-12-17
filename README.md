@@ -15,6 +15,7 @@ In this game you, playing as Peppa Pig, must collect as many apples
 3. Give permissions to this app
 4. Follow the instructions
 5. Open the app
+6. Use the *WASD* for moving
 
 ## How to run for development
 1. Download ThePeppaPigSetup.exe
