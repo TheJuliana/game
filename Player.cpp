@@ -23,7 +23,7 @@ namespace player {
     }
 
     void Player::initTexture() {
-        if (!textureSheet.loadFromFile("../assets/allpeppas.png")) { //загрузка текстуры персонажа
+        if (!textureSheet.loadFromFile("assets/allpeppas.png")) { //загрузка текстуры персонажа
             std::cout << "ERROR::Player: cannot load 'allpeppas.png' file " << std::endl;
         }
     }
