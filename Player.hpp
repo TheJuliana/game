@@ -16,12 +16,9 @@ namespace player {
         //физика
         sf::Vector2f velocity;
 
-        float velocityMax;
         float velocityMin;
-        float acceleration;
         float drag;
         float gravity;
-        float velocityMaxY;
 
 
         //инициализация характеристик
