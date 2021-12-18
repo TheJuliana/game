@@ -5,7 +5,7 @@ namespace game {
     void Game::initWindow() {
         window.create(sf::VideoMode(1200, 800),"ThePeppaPig: Apples!");
         window.setFramerateLimit(60);
-        if(!icon.loadFromFile("../assets/icon.png")) {
+        if(!icon.loadFromFile("assets/icon.png")) {
             std::cout << "ERROR: cannot load 'icon.png' file" << std::endl;
         } else {
             window.setIcon(351, 325, icon.getPixelsPtr());
@@ -109,7 +109,7 @@ namespace game {
     }
 
     void Game::initBackground() {
-        if (!background_image.loadFromFile("../assets/background.png")) {
+        if (!background_image.loadFromFile("assets/background.png")) {
             std::cout << "ERROR::Player: cannot load 'background.png' file " << std::endl;
         } else {
             background.setTexture(background_image);
@@ -139,7 +139,7 @@ namespace game {
 
     void Game::initScore() {
         //создание текста с количеством собранных яблок
-        if(!font.loadFromFile("../assets/Fuzzy.ttf")) {
+        if(!font.loadFromFile("assets/Fuzzy.ttf")) {
             std::cout << "ERROR: cannot load 'Fuzzy.ttf' file" << std::endl;
         }
         score.setPosition(0.f, 0.f);
