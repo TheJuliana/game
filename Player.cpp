@@ -148,12 +148,9 @@ namespace player {
     }
 
     void Player::initPhysics() {
-        velocityMax = 0.8f;
         velocityMin = 0.5f;
-        acceleration = 2.f;
         drag = 0.9f;
         gravity = 2.f;
-        velocityMaxY = 15.f;
         onFloor = false;
 
     }
