@@ -28,7 +28,7 @@ namespace apples {
     }
 
     void Apples::initTexture() {
-        if (!texture.loadFromFile("../assets/apple.png")) {
+        if (!texture.loadFromFile("assets/apple.png")) {
             std::cout << "ERRROR: cannot load 'apple.png' file" << std::endl;
         }
     }
